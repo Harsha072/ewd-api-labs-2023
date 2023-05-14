@@ -15,7 +15,9 @@ export default class extends AccountRepository {
         return row;
     }
     merge(accountEntity) {
+        console.log("the account ent ",accountEntity)
         let row = this.data[accountEntity.id];
+        console.log("the row::",row)
         Object.assign(row, accountEntity);
         return Promise.resolve(row);
     }
