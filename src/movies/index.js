@@ -1,9 +1,13 @@
 import express from 'express';
-import {movies, movieReviews, movieDetails} from './moviesData.js';
-import uniqid from 'uniqid'
+import {movies, movieReviews, movieDetails,genre} from './moviesData.js';
+import uniqid from 'uniqid';
 const router = express.Router(); 
 router.get('/', (req, res) => {
     res.json(movies,movieReviews,movieDetails);
+});
+
+router.get('/genre', (req, res) => {
+    res.json(genre);
 });
 
 // Get movie details

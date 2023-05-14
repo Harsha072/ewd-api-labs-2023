@@ -1,17 +1,21 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import movierouter from './src/movies/index.js';
+import createAccountsRouter from './src/accounts/routes/index.js';
+import buildDependencies from "./src/config/dependencies.js";
+
 
 dotenv.config();
 
 const app = express();
 
 // eslint-disable-next-line no-undef
+const dependencies = buildDependencies();
 const port = process.env.PORT;
 app.use(express.json());
 
 app.use('/api/movies', movierouter);
-
+  app.use('/api/accounts', createAccountsRouter(dependencies));
 app.listen(port, () => {
   console.info(`Server running at ${port}`);
 });
