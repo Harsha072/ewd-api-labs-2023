@@ -4,6 +4,7 @@ export default (dependencies) => {
 
     const getMovie = async (request, response, next) => {
         //input
+        console.log("calling upcominh")
         const movieId = request.params.id;
         // Treatment
         const movie = await moviesService.getMovie(movieId, dependencies);
@@ -12,6 +13,7 @@ export default (dependencies) => {
     };
     const find = async (request, response, next) => {
         //input
+        console.log("calling find")
         const query = request.query;
         // Treatment
         const movies = await moviesService.find(query, dependencies);

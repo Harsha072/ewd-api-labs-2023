@@ -11,10 +11,10 @@ const createMoviesRouter = (dependencies) => {
 
     router.route('/')
         .get(moviesController.find);
-    router.get('/upcoming', (req, res) => {
-            console.log('hello hiiiii');
-           
-          });
+    router.route('/upcoming')
+        .get(moviesController.getUpcomingMovies);
+
+   
 
     return router;
 };
