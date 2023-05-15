@@ -18,6 +18,7 @@ export default class extends AccountRepository {
     }
 
     async persist(accountEntity) {
+        console.log("created account");
         const {firstName, lastName, email, password} = accountEntity;
         const result = new this.model({firstName, lastName, email, password});
         await result.save();
@@ -31,7 +32,6 @@ export default class extends AccountRepository {
         console.log({id, firstName, lastName, email, password, favourites });
         return accountEntity;
     }
-
     async remove(userId) {
         return this.model.findOneAndDelete(userId);
     }
