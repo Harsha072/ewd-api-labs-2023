@@ -1,12 +1,12 @@
 import dotenv from 'dotenv';
 import express from 'express';
-
+import db from './src/config/db.js';
 import createAccountsRouter from './src/accounts/routes/index.js';
 import buildDependencies from "./src/config/dependencies.js";
 import createMoviesRouter from './src/movies/routes/index.js';
 
 dotenv.config();
-
+db.init(); 
 const app = express();
 
 // eslint-disable-next-line no-undef
