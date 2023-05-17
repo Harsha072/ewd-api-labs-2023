@@ -1,12 +1,15 @@
 import AccountsRepositoryInMemory from '../accounts/repositories/InMemoryRepository.js';
 import AccountsRepositoryMongo from '../accounts/repositories/MongoAccountRepository.js';
 import AccountSchema from '../accounts/validators/index.js';
-import Authenticator from '../accounts/security/simple/index.js';
+import TokenManager from '../accounts/security/TokenManager.js';
+import Authenticator from '../accounts/security/BCryptAuthenticator.js';
+
 const buildDependencies = () => {
   const dependencies = {
     validators: AccountSchema,
     authenticator: new Authenticator()
   };
+  dependencies.tokenManager = new TokenManager();
   dependencies.accountSchema = AccountSchema;
   // eslint-disable-next-line no-undef
   if (process.env.DATABASE_DIALECT === "in-memory") {
