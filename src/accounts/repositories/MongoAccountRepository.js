@@ -7,16 +7,15 @@ export default class extends AccountRepository {
     constructor() {
         super();
         const accountsSchema = new mongoose.Schema({
-            firstName: String,
-
-            lastName: String,
-            email: {type: String, unique: true, index: true},
-            password: String,
-            favourites: [Number]
+          firstName: String,
+          lastName: String,
+          email: { type: String, unique: true, index: true },
+          password: String,
+          favourites: [Number]
         });
-        this.model = mongoose.model('Account', accountsSchema);
-    }
-
+        this.model = mongoose.model('accounts', accountsSchema);
+        
+      }
     async persist(accountEntity) {
         console.log("created account");
         const {firstName, lastName, email, password} = accountEntity;
@@ -43,9 +42,29 @@ export default class extends AccountRepository {
     }
 
     async getByEmail(userEmail) {
+        console.log("the email ",userEmail)
         const result = await this.model.findOne({email: userEmail});
-        return new Account(result.id, result.firstName, result.lastName, result.email, result.password,result.favourites);
-    }
+        
+        if (result) {
+          return new Account(
+            result.id,
+            result.firstName,
+            result.lastName,
+            result.email,
+            result.password,
+            result.favourites
+          );
+        } else {
+            throw new Error("User not found"); ; // or throw an error, or handle the case as needed
+        }
+      }
+ 
+      
+      
+      
+      
+      
+      
 
     async find() {
         const accounts = await this.model.find();

@@ -4,10 +4,19 @@ export default (dependencies) => {
 
     const getMovie = async (request, response, next) => {
         //input
-        console.log("calling upcominh")
+        console.log("calling upcominh get movie")
         const movieId = request.params.id;
         // Treatment
         const movie = await moviesService.getMovie(movieId, dependencies);
+        //output
+        response.status(200).json(movie);
+    };
+    const getAllMovie = async (request, response, next) => {
+        //input
+        console.log("calling upcominh get all movie")
+        const movieId = request.params.id;
+        // Treatment
+        const movie = await moviesService.getAllMovie(dependencies);
         //output
         response.status(200).json(movie);
     };
@@ -31,6 +40,7 @@ export default (dependencies) => {
     return {
         getMovie,
         find,
-        getUpcomingMovies
+        getUpcomingMovies,
+        getAllMovie
     };
 };

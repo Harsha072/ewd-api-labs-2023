@@ -8,6 +8,13 @@ export default {
           );
           return response.data;
     },
+    getAllMovie: async () => {
+      
+      const response = await axios.get(
+          `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_KEY}`
+        );
+        return response.data;
+  },
     find: async (query) => {
       console.log("geting find:::::")
         const response = await axios.get(
