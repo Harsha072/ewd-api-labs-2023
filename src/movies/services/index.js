@@ -29,6 +29,29 @@ export default {
         `
       );
       return response.data;
-  }
+  },
+  getSimilarMovies: async (id)=>{
+    console.log("similar",id)
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+    );
+    return response.data;
+}
+,
+getMoviecredit: async (id)=>{
+  console.log("credit",id)
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+  );
+  return response.data;
+},
+getPopularMovie: async ()=>{
+  console.log("popular")
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+  );
+  return response.data;
+},
+
 
   };

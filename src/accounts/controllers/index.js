@@ -42,25 +42,31 @@ export default (dependencies) => {
         }
     };
     const verify = async (request, response, next) => {
-        try { 
-        // Input
-        console.log("auth ",request.headers.authorization)
-        const authHeader = request.headers.authorization;
-
-        // Treatment
-
-        const accessToken = authHeader.split(" ")[2];
-        console.log("split ",authHeader.split(" ")[2]);
-         const user = await accountService.verifyToken(accessToken, dependencies);
-
-        //output
-        next();
-    }catch(err){
-        console.log(err)
-        //Token Verification Failed
-        next(new Error(`Verification Failed ${err.message}`));
+        try {
+          // Input
+          console.log("auth ", request.headers.authorization);
+          const authHeader = request.headers.authorization;
+          console.log("type ", typeof authHeader);
+          
+          const tokenArray = authHeader.split(" ");
+          console.log("token array ",tokenArray)
+          const accessToken = tokenArray.length === 2 ? tokenArray[1] : null;
+          console.log("split ", accessToken);
+          
+          if (!accessToken) {
+            throw new Error("Access token not found");
+          }
+      
+          const user = await accountService.verifyToken(accessToken, dependencies);
+      
+          // Output
+          next();
+        } catch (err) {
+          console.log(err);
+          // Token Verification Failed
+          next(new Error(`Verification Failed ${err.message}`));
         }
-    };
+      };
 
     const getAccount = async (request, response) => {
         //input
