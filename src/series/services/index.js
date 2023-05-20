@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default {
     getSeries: async (seriesId) => {
-      
+      console.log("the id ",seriesId)
         const response = await axios.get(
             `https://api.themoviedb.org/3/tv/${seriesId}?api_key=${process.env.TMDB_KEY}`
           );

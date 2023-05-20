@@ -4,7 +4,7 @@ export default (dependencies) => {
 
     const getSeries = async (request, response, next) => {
         //input
-        console.log("calling upcominh get movie")
+        console.log("calling upcominh get series",request.url)
         const movieId = request.params.id;
         // Treatment
         const movie = await seriesService.getSeries(movieId, dependencies);
