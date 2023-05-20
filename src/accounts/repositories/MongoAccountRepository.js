@@ -11,7 +11,13 @@ export default class extends AccountRepository {
           lastName: String,
           email: { type: String, unique: true, index: true },
           password: String,
-          favourites: [Number]
+          favourites: [{
+            type: {
+              type: String,
+              enum: ['movies', 'series'] // Specify the allowed types
+            },
+            movieId: [Number]
+          }]
         });
         this.model = mongoose.model('accounts', accountsSchema);
         

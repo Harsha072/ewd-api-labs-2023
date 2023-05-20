@@ -12,6 +12,8 @@ const createRouter = (dependencies) => {
 
     router.route('/')
         .get(accountsController.listAccounts);
+        router.route('/')
+        .get(accountsController.getAccount);
 
     router.route('/:id')
         .get(accountsController.getAccount);

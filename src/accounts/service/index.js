@@ -37,24 +37,28 @@ export default {
   authenticate: async (email, password, { accountsRepository, authenticator, tokenManager }) => {
     console.log("token ",tokenManager)
     const account = await accountsRepository.getByEmail(email);
+    console.log("the account ",account)
     const result = await authenticator.compare(password, account.password);
     console.log("the result ",result)
     if (!result) {
       throw new Error('Bad credentials');
     }
-    
     const token = tokenManager.generate({ email: account.email });
-    return token;
+    console.log("returnng ",{accountid:account.id,token:token})
+    return {accountid:account.id,token:token};
   }
 ,
 getFavourites: async (accountId, { accountsRepository }) => {
   const account = await accountsRepository.get(accountId);
+  console.log("the fav ", account.favourites);
   return account.favourites;
 },
-addFavourite: async (accountId, movieId, { accountsRepository }) => {
+addFavourite: async (accountId, object, { accountsRepository }) => {
+  console.log(accountId,object);
   const account = await accountsRepository.get(accountId);
-  if (!account.favourites.includes(movieId)) {
-    account.favourites.push(movieId);
+  if (!account.favourites.includes(object)) {
+    console.log("added to db ",object)
+    account.favourites.push(object);
   }
   return await accountsRepository.merge(account);
 

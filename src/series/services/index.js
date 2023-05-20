@@ -24,20 +24,21 @@ export default {
     },
 
     getSimilarSeries: async (id)=>{
-
+console.log("series calling")
       const response = await axios.get(
-        `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false
+        `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${process.env.TMDB_KEY}
         `
       );
-      console.log("similar:::: ",response.data)
+     console.log("response series ",response.data)
       return response.data;
   },
 
   getSeriesImages: async (id)=>{
     console.log("seris images",id)
     const response = await axios.get(
-      `https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+      `https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.TMDB_KEY}`
     );
+ 
     return response.data;
   }
 
