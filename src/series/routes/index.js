@@ -9,16 +9,16 @@ const createSeriesRouter = (dependencies) => {
     const accountsController = AccountsController(dependencies);//ADD THIS: Create accountsController with dependencies
 
     router.route('/:id')
-    .get(seriesController.getSeries);
+    .get(accountsController.verify,seriesController.getSeries);
 
 router.route('/')
-    .get(seriesController.getAllSeries); 
+    .get(accountsController.verify,seriesController.getAllSeries); 
 router.route('/similar/:id')
-    .get(accountsController.verify, seriesController.getSimilarSeries); //ADD THIS: require token for all routes
+    .get(accountsController.verify,accountsController.verify, seriesController.getSimilarSeries); //ADD THIS: require token for all routes
 
  //ADD THIS: require token for all routes
     router.route('/images/:id')
-    .get(accountsController.verify, seriesController.getSeriesImages); //ADD THIS: require token for all routes
+    .get(accountsController.verify,accountsController.verify, seriesController.getSeriesImages); //ADD THIS: require token for all routes
 
     // router.route('/:id/reviews')
     //     .get(moviesController.getMovieReviews);
