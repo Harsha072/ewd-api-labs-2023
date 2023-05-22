@@ -166,7 +166,7 @@ export const getMovies = () => {
 
 ## Extra features
 
-### Logger implementation  API analytics using express status Monitor
+### Logger implementation  
 ![][image1]
 
 ### API analytics using express status Monitor
