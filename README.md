@@ -98,7 +98,7 @@ DATABASE_DIALECT=mongo
 
 ## Security and Authentication
 ### APIs that require authentication
-/api/movies
+/api/movies <br>
 /api/movies/{movieId}
 /api/movies/credits/{movieid}
 /api/movies/upcoming/
