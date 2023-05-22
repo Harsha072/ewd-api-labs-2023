@@ -99,33 +99,59 @@ DATABASE_DIALECT=mongo
 ## Security and Authentication
 ### APIs that require authentication
 /api/movies <br>
-/api/movies/{movieId}
-/api/movies/credits/{movieid}
-/api/movies/upcoming/
-/api/movies/popular/
- /api/movies/genre/
- /api/movies/similar/{movieId}
- /api/movies/credits/{movieId}
- /api/series
-  /api/series/{seriesId}
-  /api/series/images/{seriesId}
-  /api/actors/
-   /api/actors/{actorId}
-   /api/actors/credits/{actorId}
-    /api/accounts/{userId}/favourites
+/api/movies/{movieId} <br>
+/api/movies/credits/{movieid} <br>
+/api/movies/upcoming/ <br>
+/api/movies/popular/ <br>
+ /api/movies/genre/ <br>
+ /api/movies/similar/{movieId} <br>
+ /api/movies/credits/{movieId} <br>
+ /api/series <br>
+  /api/series/{seriesId} <br>
+  /api/series/images/{seriesId} <br>
+  /api/actors/ <br>
+   /api/actors/{actorId} <br>
+   /api/actors/credits/{actorId} <br>
+    /api/accounts/{userId}/favourites <br>
     
 ## Validation
 
-[Briefly describe and extra data validation you added to the API, and where it is implemented in the App.]
+~~~Javascript
+import Joi from 'joi';
 
-
-
+const accountSchema = Joi.object({
+    email: Joi.string().email().lowercase().required(),
+    password: Joi.string()
+      .pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\S+$).{7,20}$/)
+      .required()
+      .messages({
+        'string.pattern.base': 'Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character',
+      }),
+    firstName: Joi.string().min(1).max(30).required(),
+    lastName: Joi.string().min(1).max(30).required(),
+  });
+export default {account: accountSchema};
+~~~
 
 
 ## Integrating with React App
 
-[Describe how you integrated your React app with the API. You can provide a link to the React App repo and give an example of an API call from React App. For example: ]
+### Integration with react App
+~~~Javascript
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8080',
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  }
+})
 
+~~
 ~~~Javascript
 export const getMovies = () => {
   return fetch(
@@ -138,14 +164,15 @@ export const getMovies = () => {
 
 ~~~
 
-[You can also add images of React app here also if you wish. This can be also shown in the video]
-
 ## Extra features
 
-. . Briefly explain any non-standard features, functional or non-functional, developed for the app.  
+### Logger implementation  API analytics using express status Monitor
+![][image1]
 
-If you deployed to a hosting service/cloud, you should specify here. 
+### API analytics using express status Monitor
+![][image2]
 
-## Independent learning.
 
-. . State the non-standard aspects of React/Express/Node (or other related technologies) that you researched and applied in this assignment . .  
+
+[image1]: ./images/enterpise.jpg
+[image2]: ./images/expressstatus.jpg
