@@ -166,7 +166,7 @@ export const getMovies = () => {
 
 ## Extra features
 
-### Logger implementation  
+### Logger implementation using express-request id and morgan
 ![][image1]
 
 ### API analytics using express status Monitor
