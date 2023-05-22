@@ -7,6 +7,7 @@ const createRouter = (dependencies) => {
     const accountsController = AccountsController(dependencies);
     const validationController = ValidationController(dependencies);//Add this lineLoad validation controller with dependencies
 
+    
     router.route('/')
         .post(validationController.validateAccount, accountsController.createAccount); //add validateAccount to route
 
@@ -19,6 +20,7 @@ const createRouter = (dependencies) => {
         .get(accountsController.getAccount);
     router.route('/:id')
         .put(accountsController.updateAccount);
+
 
     router.route('/security/token')
         .post(accountsController.authenticateAccount);

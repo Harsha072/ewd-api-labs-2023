@@ -52,14 +52,13 @@ export default (dependencies) => {
     const verify = async (request, response, next) => {
         try {
           // Input
-          console.log("auth ", request.headers.authorization);
+        
           const authHeader = request.headers.authorization;
-          console.log("type ", typeof authHeader);
-          
+        
           const tokenArray = authHeader.split(" ");
-          console.log("token array ",tokenArray)
+      
           const accessToken = tokenArray.length === 2 ? tokenArray[1] : null;
-          console.log("split ", accessToken);
+         
           
           if (!accessToken) {
             throw new Error("Access token not found");
