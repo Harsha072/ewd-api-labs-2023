@@ -19,7 +19,7 @@ Name: [Puttaswamy Harsha]
 
  + Get Similar Series -  Get a list of similar movies using a series ID.
 
- + Get series images - Get the images for series
+ + Get series images - Get the images for series based on id
 
  + Get upcoming movies - Returns all upcoming movies 
 
@@ -30,6 +30,10 @@ Name: [Puttaswamy Harsha]
  + Get a movie - Returns a movie details based on id 
 
  + Get movie credits - Returns movie credits based on movie id 
+
+ + Add favourite movies and series - Add both favourite movies and series for a particular user
+
++ Get favourite movies and series - Return favourite movies and series for a user
 
 ## Installation Requirements
 
@@ -74,38 +78,49 @@ DATABASE_DIALECT=mongo
 |  |  GET | POST | PUT | DELETE
 | -- | -- | -- | -- | -- 
 | /api/movies |Gets a list of movies | N/A | N/A |
-| /api/movies/{movieid} | Get a Movie | N/A | N/A | N/A
+| /api/movies/{movieId} | Get a Movie | N/A | N/A | N/A
 | /api/movies/credits/{movieid} | Get all credits for movie | N/A | N/A | N/A  
 | /api/movies/upcoming/ | Get all upcoming movies | N/A | N/A | N/A  
 | /api/movies/popular/ | Get all popular movies movie | N/A | N/A | N/A  
-| ... | ... | ... | ... | ...
-
-[If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).]
-https://app.swaggerhub.com/apis-docs/fxwalsh/userAPI/initial
-
+| /api/movies/genre/ | Get all genre movies movie | N/A | N/A | N/A 
+| /api/movies/similar/{movieId} | Get all similar movies based on  movieid | N/A | N/A | N/A
+| /api/movies/credits/{movieId} | Get all similar movies based on  movieid | N/A | N/A | N/A
+| /api/series |Gets a list of series | N/A | N/A |   
+| /api/series/{seriesId} | Get a series | N/A | N/A | N/A
+| /api/series/images/{seriesId} | Get a series image based on id | N/A | N/A | N/A
+| /api/actors/ | Get all actors | N/A | N/A | N/A
+| /api/actors/{actorId} | Get actors detail based on id | N/A | N/A | N/A
+| /api/actors/credits/{actorId} | Get credits for an actor based on id | N/A | N/A | N/A
+| /api/accounts/{userId}/favourites |  | add favourite movies and sereis | N/A | N/A
+| /api/accounts/{userId}/favourites | Get favourite movies and sereis | N/A | N/A | N/A
 
 
 
 ## Security and Authentication
-[Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected. **REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON GITHUB]**
-
-[Give details of the routes that have authentication. ]
-
-
-
+### APIs that require authentication
+/api/movies
+/api/movies/{movieId}
+/api/movies/credits/{movieid}
+/api/movies/upcoming/
+/api/movies/popular/
+ /api/movies/genre/
+ /api/movies/similar/{movieId}
+ /api/movies/credits/{movieId}
+ /api/series
+  /api/series/{seriesId}
+  /api/series/images/{seriesId}
+  /api/actors/
+   /api/actors/{actorId}
+   /api/actors/credits/{actorId}
+    /api/accounts/{userId}/favourites
+    
 ## Validation
 
 [Briefly describe and extra data validation you added to the API, and where it is implemented in the App.]
 
 
 
-## Testing
 
-Briefly state how you tested the API. 
-
-Give an example of any automated testing results or link to a report. 
-
-![](./images/tests-image.png)
 
 ## Integrating with React App
 

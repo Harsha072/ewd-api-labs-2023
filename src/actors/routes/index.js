@@ -9,12 +9,12 @@ const createActorsRouter = (dependencies) => {
     const accountsController = AccountsController(dependencies);//ADD THIS: Create accountsController with dependencies
 
     router.route('/:id')
-    .get(actorsController.getActor);
+    .get(accountsController.verify,actorsController.getActor);
 
 router.route('/')
-    .get(actorsController.getAllActors); 
+    .get(accountsController.verify,actorsController.getAllActors); 
 router.route('/credits/:id')
-    .get(accountsController.verify, actorsController.getActorCredits); //ADD THIS: require token for all routes
+    .get(accountsController.verify,accountsController.verify, actorsController.getActorCredits); //ADD THIS: require token for all routes
     // router.route('/:id/reviews')
     //     .get(moviesController.getMovieReviews);
 
