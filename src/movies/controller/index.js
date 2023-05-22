@@ -11,6 +11,14 @@ export default (dependencies) => {
         //output
         response.status(200).json(movie);
     };
+    const getMoviegenres = async (request, response, next) => {
+        
+        console.log("calling  get moviem genre")
+       
+        const movie = await moviesService.getMoviegenres(dependencies);
+        //output
+        response.status(200).json(movie);
+    };
     const getAllMovie = async (request, response, next) => {
         //input
         console.log("calling get all movie")
@@ -67,6 +75,7 @@ export default (dependencies) => {
         getAllMovie,
         getSimilargMovies,
         getMoviesCredits,
-        getPopularMovie
+        getPopularMovie,
+        getMoviegenres
     };
 };

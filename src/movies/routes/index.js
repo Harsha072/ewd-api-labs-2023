@@ -14,7 +14,9 @@ const createMoviesRouter = (dependencies) => {
         .get(moviesController.getAllMovie);
     router.route('/upcoming/').get(accountsController.verify, moviesController.getUpcomingMovies)
     router.route('/popular')
-        .get(accountsController.verify, moviesController.getPopularMovie); //ADD THIS: require token for all routes
+        .get(accountsController.verify, moviesController.getPopularMovie);
+        router.route('/genre')
+        .get(accountsController.verify, moviesController.getMoviegenres); //ADD THIS: require token for all routes
     router.route('/:id')
         .get(moviesController.getMovie);
 

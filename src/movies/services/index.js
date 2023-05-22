@@ -45,6 +45,13 @@ getMoviecredit: async (id)=>{
   );
   return response.data;
 },
+getMoviegenres: async ()=>{
+  console.log("genre")
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+  );
+  return response.data;
+},
 getPopularMovie: async ()=>{
   console.log("popular")
   const response = await axios.get(

@@ -32,6 +32,13 @@ console.log("series calling")
      console.log("response series ",response.data)
       return response.data;
   },
+  getSeriesgenres: async ()=>{
+    console.log("genre")
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+    );
+    return response.data;
+  },
 
   getSeriesImages: async (id)=>{
     console.log("seris images",id)
